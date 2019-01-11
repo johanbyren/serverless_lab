@@ -1,0 +1,17 @@
+{
+  "name": "node-serverless-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "serverless": "^1.36.0",
+    "serverless-http": "^1.8.0"
+  }
+}
