@@ -36,6 +36,7 @@ module.exports.createUser = async (event, context) => {
 
   return {
     statusCode: 200,
-    response: res
+    response: res,
+    input: event
   }
 }
