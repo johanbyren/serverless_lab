@@ -1,6 +1,6 @@
 'use strict';
 
-var AmazonCognitoIdentity = require('aws-sdk/clients/cognitoidentityserviceprovider');
+var AWS = require('aws-sdk');
 
 module.exports.hello = async (event, context) => {
   return {
@@ -19,6 +19,8 @@ module.exports.hello = async (event, context) => {
 module.exports.createUser = async (event, context) => {
   console.log('Lambda initiated with event: ', event);  
 
+  let cognitoProvider = new AWS.CognitoIdentityServiceProvider();
+
   const params = {
     UserPoolId: 'eu-west-1_V7lF6O5uV',
     ClientId: 'oet4c5tgg05m58muvc440tpib',
@@ -33,5 +35,5 @@ module.exports.createUser = async (event, context) => {
   };
 
 
-  return await new AmazonCognitoIdentity.signUp(params).promise();
+  return await cognitoProvider.signUp(params).promise();
 }
