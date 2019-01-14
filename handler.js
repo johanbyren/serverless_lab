@@ -20,16 +20,16 @@ module.exports.createUser = async (event, context) => {
   console.log('Lambda initiated with event: ', event);  
 
   let cognitoProvider = new AWS.CognitoIdentityServiceProvider();
+  // UserPoolId: 'eu-west-1_V7lF6O5uV',
 
   const params = {
-    UserPoolId: 'eu-west-1_V7lF6O5uV',
     ClientId: 'oet4c5tgg05m58muvc440tpib',
     Password: 'password',
-    Username: 'email',
+    Username: 'johan.byren@enfogroup.com',
     UserAttributes: [
       {
-        Name: 'email',
-        Value: 'email@email.com'
+        Name: 'JohanByren',
+        Value: 'johan.byren@enfogroup.com'
       }
     ]
   };
