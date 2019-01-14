@@ -19,15 +19,23 @@ module.exports.hello = async (event, context) => {
 module.exports.createUser = async (event, context) => {
   console.log('Lambda initiated with event: ', event);  
   // UserPoolId: 'eu-west-1_V7lF6O5uV',
-
+  
   const params = {
     ClientId: 'oet4c5tgg05m58muvc440tpib',
-    Password: 'password',
+    Password: 'password12345',
     Username: 'johan.byren@enfogroup.com',
     UserAttributes: [
       {
         Name: 'email',
         Value: 'johan.byren@enfogroup.com'
+      }, 
+      {
+        Name: 'phone_number',
+        Value: '+46706864237'
+      },
+      {
+        Name: 'name',
+        Value: 'Johan Byrén'
       }
     ]
   };
@@ -36,7 +44,6 @@ module.exports.createUser = async (event, context) => {
 
   return {
     statusCode: 200,
-    response: res,
-    input: event
+    response: res
   }
 }
