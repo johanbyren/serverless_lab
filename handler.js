@@ -1,8 +1,6 @@
 'use strict';
 
-var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-var CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
-var CognitoUserAttribute = AmazonCognitoIdentity.CognitoUserAttribute;
+var AmazonCognitoIdentity = require('aws-sdk').CognitoIdentityServiceProvider;
 
 module.exports.hello = async (event, context) => {
   return {
@@ -19,41 +17,20 @@ module.exports.hello = async (event, context) => {
 
 
 module.exports.createUser = async (event, context) => {
-  console.log('Lambda initiated with event: ', event);
+  console.log('Lambda initiated with event: ', event);  
 
-  //Define aws cognito user pool
-  let poolData = {
+  const params = {
     UserPoolId: 'eu-west-1_V7lF6O5uV',
-    ClientId: 'oet4c5tgg05m58muvc440tpib'
-  };
-  
-  let userPool = new CognitoUserPool(poolData);
-  console.log('userPool:',userPool);
-  
-  //Defien User Attributes
-  let attributeList = [];
-  let dataEmail = {
-    Name: 'johanbyren',
-    Value: 'johan.byren@gmail.com'
-  };
-
-  let attributeEmail = new CognitoUserAttribute(dataEmail);
-  attributeList.push(attributeEmail);
-
-  //Create user via AWS Cognito
-  userPool.signUp('username', 'password', attributeList, null, function(err, result){
-    try {
-      if(err) {
-        console.log('err: ', err);
-        callback(err, null);
-      } else {
-        console.log('result: ', result);
-        let cognitoUser = result.user;
-        console.log('user name is ' + cognitoUser.getUsername());
-        callback(null, result);
+    ClientId: 'oet4c5tgg05m58muvc440tpib',
+    Password: 'password',
+    Username: 'email',
+    UserAttributes: [
+      {
+        Name: 'email',
+        Value: 'email@email.com'
       }
-    } catch (err) {
-      callback('Catch callback: ' + err, null);
-    }
-  })
+    ]
+  };
+
+  return await AmazonCognitoIdentity.signUp(params).promise();
 }
