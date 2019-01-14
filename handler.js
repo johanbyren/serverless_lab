@@ -1,4 +1,4 @@
-import * as AWS from 'aws-sdk';
+var AWS = require('aws-sdk');
 
 let cognitoProvider = new AWS.CognitoIdentityServiceProvider();
 
@@ -20,7 +20,7 @@ module.exports.createUser = async (event, context) => {
   console.log('Lambda initiated with event: ', event);  
   // UserPoolId: 'eu-west-1_V7lF6O5uV',
 
-  const params: AWS.CognitoIdentityServiceProvider.SignUpRequest = {
+  const params = {
     ClientId: 'oet4c5tgg05m58muvc440tpib',
     Password: 'password',
     Username: 'johan.byren@enfogroup.com',
