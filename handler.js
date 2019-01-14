@@ -1,6 +1,6 @@
 'use strict';
 
-var AmazonCognitoIdentity = require('aws-sdk').CognitoIdentityServiceProvider;
+var AmazonCognitoIdentity = require('aws-sdk/clients/cognitoidentityserviceprovider');
 
 module.exports.hello = async (event, context) => {
   return {
@@ -32,5 +32,6 @@ module.exports.createUser = async (event, context) => {
     ]
   };
 
-  return await AmazonCognitoIdentity.signUp(params).promise();
+
+  return await new AmazonCognitoIdentity.signUp(params).promise();
 }
