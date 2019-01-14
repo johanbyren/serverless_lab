@@ -8,6 +8,9 @@ module.exports = {
     path: __dirname + '/dist',
     filename: 'node-serverless-lab.js'
   },
+  externals: [
+    'aws-sdk'
+  ],
   module: {
     rules: [
       {
