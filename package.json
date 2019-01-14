@@ -14,7 +14,8 @@
     "express": "^4.16.4",
     "node-fetch": "^2.3.0",
     "serverless": "^1.36.0",
-    "serverless-http": "^1.8.0"
+    "serverless-http": "^1.8.0",
+    "typescript": "^3.2.2"
   },
   "devDependencies": {
     "json-loader": "^0.5.7",

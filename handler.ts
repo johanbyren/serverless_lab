@@ -1,6 +1,6 @@
-'use strict';
+import * as AWS from 'aws-sdk';
 
-var AWS = require('aws-sdk');
+let cognitoProvider = new AWS.CognitoIdentityServiceProvider();
 
 module.exports.hello = async (event, context) => {
   return {
@@ -18,22 +18,24 @@ module.exports.hello = async (event, context) => {
 
 module.exports.createUser = async (event, context) => {
   console.log('Lambda initiated with event: ', event);  
-
-  let cognitoProvider = new AWS.CognitoIdentityServiceProvider();
   // UserPoolId: 'eu-west-1_V7lF6O5uV',
 
-  const params = {
+  const params: AWS.CognitoIdentityServiceProvider.SignUpRequest = {
     ClientId: 'oet4c5tgg05m58muvc440tpib',
     Password: 'password',
     Username: 'johan.byren@enfogroup.com',
     UserAttributes: [
       {
-        Name: 'JohanByren',
+        Name: 'email',
         Value: 'johan.byren@enfogroup.com'
       }
     ]
   };
 
+  const res = await cognitoProvider.signUp(params).promise();
 
-  return await cognitoProvider.signUp(params).promise();
+  return {
+    statusCode: 200,
+    response: res
+  }
 }
