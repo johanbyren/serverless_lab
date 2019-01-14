@@ -63,6 +63,15 @@ functions:
           path: hello
           method: post
 
+  createUser:
+    handler: handler.createUser
+    memorySize: 128
+    description: Create a user in aws cognito. 
+    events:
+      - http:
+          path: createUser
+          method: post
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
