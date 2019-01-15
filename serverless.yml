@@ -60,12 +60,11 @@ provider:
 functions:
   hello:
     handler: handler.hello
-    memorySize: 128
     description: testing hello function
     events:
       - http:
           path: hello
-          method: post
+          method: get
 
   createUser:
     handler: src/cognito-test/registerUser.createUser
@@ -119,3 +118,7 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+plugins:
+  - serverless-webpack
+  - serverless-offline

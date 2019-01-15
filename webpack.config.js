@@ -1,22 +1,28 @@
+const path = require('path');
+const slsw = require('serverless-webpack');
+
 module.exports = {
-  // Example setup for your project:
-  // The entry module that requires or imports the rest of your project.
-  // Must start with `./`!
-  entry: './src/entry.js',
-  // Place output files in `./dist/my-app.js`
-  output: {
-    path: __dirname + '/dist',
-    filename: 'node-serverless-lab.js'
+  devtool: 'source-map',
+  mode: 'production',
+  entry: slsw.lib.entries,
+  resolve: {
+    symlinks: false,
+    extensions: ['.js', '.jsx', '.json', '.ts'],
   },
-  externals: [
-    'aws-sdk'
-  ],
+  output: {
+    libraryTarget: 'commonjs',
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  externals: ['aws-sdk'],
+  target: 'node',
   module: {
     rules: [
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+      { 
+        test: /\.ts(x?)$/, 
+        include: path.resolve(__dirname, 'src'), 
+        loader: 'ts-loader' 
       }
     ]
-  }
+  },
 };
