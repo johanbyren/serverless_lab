@@ -86,7 +86,7 @@ functions:
     handler: src/cognito-test/signInUser.signInUser
     description: Use this endpoint to sign in a confirmed user. 
     events: 
-      - https:
+      - http:
           path: signInUser
           method: post
 
