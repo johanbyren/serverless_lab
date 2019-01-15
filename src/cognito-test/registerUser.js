@@ -7,7 +7,7 @@ module.exports.createUser = async (event, context) => {
   let body = JSON.parse(event.body);  
 
   const params = {
-    ClientId: process.env.appClients-clientId,
+    ClientId: process.env.UserPoolClientId,
     Password: body.password,
     Username: body.userName,
     UserAttributes: [
