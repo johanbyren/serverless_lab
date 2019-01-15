@@ -64,8 +64,7 @@ functions:
           method: post
 
   createUser:
-    handler: handler.createUser
-    memorySize: 128
+    handler: src/cognito-test/registerUser.createUser
     description: Create a user in aws cognito. 
     events:
       - http:
