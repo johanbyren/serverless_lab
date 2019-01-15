@@ -22,8 +22,7 @@ provider:
   runtime: nodejs8.10
   region: eu-west-1
   stage: dev
-  package:
-    individually: true
+  profile: private
   environment:
     UserPoolId: eu-west-1_V7lF6O5uV
     PoolArn: arn:aws:cognito-idp:eu-west-1:439871686552:userpool/eu-west-1_V7lF6O5uV
