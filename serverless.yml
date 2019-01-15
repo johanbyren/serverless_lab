@@ -74,6 +74,22 @@ functions:
           path: createUser
           method: post
 
+  confirmUser:
+    handler: src/cognito-test/confirmUser.confirmUser
+    description: Confirm a user that you created. Use code from your mail
+    events:
+      - http:
+          path: confirmUser
+          method: post
+
+  signInUser:
+    handler: src/cognito-test/signInUser.signInUser
+    description: Use this endpoint to sign in a confirmed user. 
+    events: 
+      - https:
+          path: signInUser
+          method: post
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
